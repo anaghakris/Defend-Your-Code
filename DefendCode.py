@@ -2,7 +2,6 @@ import os
 import re
 import base64
 import hashlib
-import random
 import time
 from getpass import getpass
 
