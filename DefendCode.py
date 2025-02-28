@@ -150,13 +150,16 @@ def create_new_password():
     is_password_set = False
 
     while not is_password_set:
-        new_password = get_password_from_user()
+        new_password = get_password_from_user(
+            prompt="Create a new password (minimum 8 characters, must include at least one uppercase letter, "
+                   "one lowercase letter, one digit, and one special character):"
+        )
 
         if not is_password_valid(new_password):
             print("Password does not meet requirements. Please try again.")
             continue
 
-        confirm_password = get_password_from_user()
+        confirm_password = get_password_from_user(prompt="Confirm your password: ")
 
         if new_password != confirm_password:
             print("Passwords do not match. Please try again.")
@@ -180,8 +183,9 @@ def create_new_password():
             print("An error occurred while saving the password. Please try again.")
 
 
-def get_password_from_user():
-    return getpass("Please enter your password: ")
+def get_password_from_user(prompt="Please enter your password: "):
+    return getpass(prompt)
+
 
 
 def is_password_valid(password):
