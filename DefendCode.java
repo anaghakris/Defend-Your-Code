@@ -1,3 +1,20 @@
+/**
+ * Defend Your Code - Security Assignment
+ * 
+ * This program validates user inputs, securely processes data, and prevents common
+ * security vulnerabilities including overflow, path traversal, and improper input.
+ * 
+ * Security Features:
+ * - Input validation for names, integers, and filenames
+ * - Path traversal prevention
+ * - Integer overflow detection and prevention
+ * - Secure password handling with salted SHA-256 hashing
+ * - Error logging with protected access
+ * - File permission controls
+ * 
+ * @author Team 5
+ * @version 1.0
+ */
 import java.io.*;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
@@ -10,13 +27,22 @@ import java.util.Base64;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+
 public class DefendCode {
-    private static final int MAX_NAME_LENGTH = 50;
-    private static final String NAME_PATTERN_STRING = "^[a-zA-Z\\-'\\s]+$";
+    // Constants
+    private static final int MAX_NAME_LENGTH = 50; // Maximum length for names
+    // Regular expression pattern for valid name characters: letters (a-z, A-Z), hyphens (-), 
+    //apostrophes ('), and whitespace characters (spaces, tabs, line breaks)
+    private static final String NAME_PATTERN_STRING = "^[a-zA-Z\\-'\\s]+$"; 
+    // File extension for text files
     private static final String TEXT_FILE_EXTENSION = ".txt";
+    // File name for storing the hashed password (hidden from users)
     private static final String HIDDEN_PASSWORD_FILE = ".password.dat";
+    // File name for logging errors (hidden from users)
     private static final String HIDDEN_ERROR_LOG_FILE = ".error_log.txt";
+    // Compiled pattern for validating names based on the NAME_PATTERN_STRING regular expression
     private static final Pattern VALID_NAME_PATTERN = Pattern.compile(NAME_PATTERN_STRING);
+    // Scanner object for reading user input from the keyboard
     private static final Scanner keyboardInput = new Scanner(System.in);
     
     public static void main(String[] args) {
