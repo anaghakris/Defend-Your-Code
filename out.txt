@@ -1,0 +1,17 @@
+USER INFORMATION:
+First Name: ad
+Last Name: sd
+
+INTEGER VALUES:
+First Integer: 123
+Second Integer: 2132
+
+CALCULATIONS:
+Sum: 2255
+Product: 262236
+
+INPUT FILE:
+File Name: input.txt
+
+INPUT FILE CONTENTS:
+Test file.
