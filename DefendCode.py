@@ -90,7 +90,7 @@ def prompt_for_valid_file_name(file_type):
             print("Error: File name cannot be empty. Please try again.")
             continue
 
-        if os.path.isabs(file_name):
+        if os.path.isabs(file_name) or '..' in file_name.split(os.sep):
             print("Error: Path traversal is not allowed. Please provide only a file name.")
             continue
 
