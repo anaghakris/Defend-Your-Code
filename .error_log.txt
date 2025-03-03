@@ -1,0 +1,2 @@
+2025-03-03T13:25:30.640253: Product would cause overflow! Value: 154059840000
+2025-03-03T13:33:03.460717: Product would cause overflow! Value: -4611686016279904256
