@@ -175,6 +175,13 @@ def prompt_for_valid_file_name(file_type):
             print(error_msg)
             write_to_error_log(f"{file_type.capitalize()} file input error: path traversal detected in '{file_name}'.")
             continue
+        # *** New Reserved Names Check ***
+        if file_name in [HIDDEN_PASSWORD_FILE, HIDDEN_ERROR_LOG_FILE]:
+            error_msg = "Error: Cannot use reserved file names."
+            print(error_msg)
+            write_to_error_log(f"{file_type.capitalize()} file input error: reserved file name '{file_name}' used.")
+            continue
+        # Then check for valid file extension
         if not file_name.endswith(TEXT_FILE_EXTENSION):
             error_msg = f"Error: File must have {TEXT_FILE_EXTENSION} extension. Please try again."
             print(error_msg)

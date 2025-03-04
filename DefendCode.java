@@ -195,10 +195,17 @@ public class DefendCode {
                 continue;
             }
             File fileObject = new File(fileName);
-            // If the user input contains any path separators, it might be an attempt at path traversal.
+            // Check for path traversal attempts
             if (!fileObject.getName().equals(fileName)) {
                 String err = "Path traversal attempt detected for " + theFileType + " file: " + fileName;
                 System.out.println("Error: Path traversal is not allowed. Please provide only a file name.");
+                writeToErrorLog(err);
+                continue;
+            }
+            // *** Reserved File Names Check ***
+            if (fileName.equals(HIDDEN_PASSWORD_FILE) || fileName.equals(HIDDEN_ERROR_LOG_FILE)) {
+                String err = "Error: Cannot use reserved file names: " + fileName;
+                System.out.println(err);
                 writeToErrorLog(err);
                 continue;
             }
@@ -217,8 +224,6 @@ public class DefendCode {
             return fileName;
         }
     }
-    
-    
     
     /**
      * Handles password verification and creation. If the password file does not

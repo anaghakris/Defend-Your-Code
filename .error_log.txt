@@ -1,8 +1,2 @@
-2025-03-03T19:23:38.529136: Input file does not exist: in.txt
-2025-03-03T19:24:02.765041: File must have .txt extension: input.rtx
-2025-03-03T19:24:12.995628: Input file does not exist: input.txt.txt
-2025-03-03T19:24:22.500613: Path traversal attempt detected for input file: ../input.txt
-2025-03-03T19:24:37.770711: Error: Input and output files must be different.
-2025-03-03T19:26:35.605582: File must have .txt extension: password.dat
-2025-03-03T19:29:36.703785: Error: Cannot use reserved file names.
-2025-03-03T19:30:17.886907: File must have .txt extension: .password.dat
+2025-03-03 19:41:17: Output file input error: reserved file name '.password.dat' used.
+2025-03-03T19:42:56.830634: Error: Cannot use reserved file names: .password.dat
