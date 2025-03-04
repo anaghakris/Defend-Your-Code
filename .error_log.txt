@@ -1,5 +1,17 @@
-2025-03-03T17:16:25.503300: Input file does not exist: i.txt
-2025-03-03T17:17:52.851166: File name cannot be empty for input file.
-2025-03-03T17:19:27.066887: Invalid integer format for second integer: t
-2025-03-03T17:19:37.663907: File name cannot be empty for input file.
-2025-03-03T17:20:04.443709: Name cannot be empty for first name.
+2025-03-03 17:56:40: First name input error: empty input.
+2025-03-03 17:56:44: First name input error: empty input.
+2025-03-03 17:56:45: First name input error: empty input.
+2025-03-03 17:56:54: First integer input error: empty input.
+2025-03-03 17:56:55: First integer input error: empty input.
+2025-03-03 17:56:58: Input file input error: empty file name.
+2025-03-03 17:57:00: Input file input error: empty file name.
+2025-03-03 17:57:05: Output file input error: empty file name.
+2025-03-03 17:57:11: Output file input error: path traversal detected in '../input.txt'.
+2025-03-03 17:57:13: Output file input error: empty file name.
+2025-03-03 17:57:22: Password verification failed attempt 1.
+2025-03-03 17:57:28: Password verification failed attempt 2.
+2025-03-03 17:57:32: Password verification failed attempt 3.
+2025-03-03 17:57:32: Exceeded maximum password attempts; initiating new password creation.
+2025-03-03 17:57:40: New password creation error: password does not meet requirements.
+2025-03-03 17:57:46: New password creation error: passwords do not match.
+2025-03-03 17:57:47: New password creation error: password does not meet requirements.

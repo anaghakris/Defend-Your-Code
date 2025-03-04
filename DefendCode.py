@@ -94,25 +94,27 @@ Returns:
     str: The validated name
 """
 def prompt_for_valid_name(name_type):
-    # Loop until a valid name is entered
     while True:
-        # Prompt the user for input
-        user_input = input(f"\nPlease enter your {name_type} name (max {MAX_NAME} "
-                           "characters, only letters, spaces, hyphens, and apostrophes allowed): ").strip()
-        # Validate the name
+        user_input = input(
+            f"\nPlease enter your {name_type} name (max {MAX_NAME} characters, only letters, spaces, hyphens, and apostrophes allowed): "
+        ).strip()
         if not user_input:
-            print("Error: Name cannot be empty. Please try again.")
+            error_msg = "Error: Name cannot be empty. Please try again."
+            print(error_msg)
+            write_to_error_log(f"{name_type.capitalize()} name input error: empty input.")
             continue
-        # Check name length
         if len(user_input) > MAX_NAME:
-            print(f"Error: Name exceeds maximum length of {MAX_NAME} characters. Please try again.")
+            error_msg = f"Error: Name exceeds maximum length of {MAX_NAME} characters. Please try again."
+            print(error_msg)
+            write_to_error_log(f"{name_type.capitalize()} name input error: length exceeds {MAX_NAME}.")
             continue
-        # Check for invalid characters
         if not VALID_NAME.match(user_input):
-            print("Error: Name contains invalid characters. Only letters, spaces, hyphens, and apostrophes are allowed.")
+            error_msg = "Error: Name contains invalid characters. Only letters, spaces, hyphens, and apostrophes are allowed."
+            print(error_msg)
+            write_to_error_log(f"{name_type.capitalize()} name input error: invalid characters in name.")
             continue
-        # Return the validated name
         return user_input
+
 
 """
 Prompts the user for a valid integer within the specified range.
@@ -127,20 +129,21 @@ Returns:
     int: The validated integer entered by the user.
 """
 def prompt_for_valid_integer(position):
-    # Loop until a valid integer is entered
     while True:
-        # Prompt the user for input
-        user_input = input(f"\nPlease enter the {position} integer value (range: -2,147,483,648 to 2,147,483,647): ").strip()
-        # Validate the integer
+        user_input = input(
+            f"\nPlease enter the {position} integer value (range: -2,147,483,648 to 2,147,483,647): "
+        ).strip()
         if not user_input:
-            print("Error: Input cannot be empty. Please try again.")
+            error_msg = "Error: Input cannot be empty. Please try again."
+            print(error_msg)
+            write_to_error_log(f"{position.capitalize()} integer input error: empty input.")
             continue
-        # Check integer range
         try:
             return int(user_input)
-        # Handle exceptions
         except ValueError:
-            print("Error: Invalid integer format. Please enter a valid number within the specified range.")
+            error_msg = "Error: Invalid integer format. Please enter a valid number within the specified range."
+            print(error_msg)
+            write_to_error_log(f"{position.capitalize()} integer input error: invalid format for input '{user_input}'.")
 
 """
 Prompts the user for a valid file name (must end with TEXT_FILE_EXTENSION and
@@ -155,28 +158,33 @@ Returns:
     str: The validated file name
 """
 def prompt_for_valid_file_name(file_type):
-    # Loop until a valid file name is entered
     while True:
-        # Prompt the user for input
-        file_name = input(f"\nPlease enter the {file_type} file name (must end with {TEXT_FILE_EXTENSION} "
-                          "and be in the current directory): ").strip()
-        # Validate the file name
+        file_name = input(
+            f"\nPlease enter the {file_type} file name (must end with {TEXT_FILE_EXTENSION} and be in the current directory): "
+        ).strip()
         if not file_name:
-            print("Error: File name cannot be empty. Please try again.")
+            error_msg = "Error: File name cannot be empty. Please try again."
+            print(error_msg)
+            write_to_error_log(f"{file_type.capitalize()} file input error: empty file name.")
             continue
-        # Check file extension
+        # Check for path traversal
         if os.path.isabs(file_name) or '..' in file_name.split(os.sep):
-            print("Error: Path traversal is not allowed. Please provide only a file name.")
+            error_msg = "Error: Path traversal is not allowed. Please provide only a file name."
+            print(error_msg)
+            write_to_error_log(f"{file_type.capitalize()} file input error: path traversal detected in '{file_name}'.")
             continue
         if not file_name.endswith(TEXT_FILE_EXTENSION):
-            print(f"Error: File must have {TEXT_FILE_EXTENSION} extension. Please try again.")
+            error_msg = f"Error: File must have {TEXT_FILE_EXTENSION} extension. Please try again."
+            print(error_msg)
+            write_to_error_log(f"{file_type.capitalize()} file input error: invalid file extension in '{file_name}'.")
             continue
-        
         if file_type == "input" and not os.path.exists(file_name):
-            print("Error: Input file does not exist. Please try again.")
+            error_msg = "Error: Input file does not exist. Please try again."
+            print(error_msg)
+            write_to_error_log(f"Input file error: file '{file_name}' does not exist.")
             continue
-        # Return the validated file name
         return file_name
+
 
 """
 Handles password verification and creation. If the password file does not
@@ -188,7 +196,6 @@ during password verification, prints an error message and creates a new
 password.
 """
 def handle_password_verification():
-    # Read the password hash and salt from the password file
     stored_password_hash = None
     stored_password_salt = None
     try:
@@ -198,35 +205,28 @@ def handle_password_verification():
                 if len(password_file_data) == 2:
                     stored_password_hash = password_file_data[0]
                     stored_password_salt = base64.b64decode(password_file_data[1])
-        # If the password file does not exist or is invalid, create a new password
         if stored_password_hash is None or stored_password_salt is None:
             create_new_password()
             return
 
-        # Verify the password
         is_password_correct = False
         failed_attempts = 0
         MAX_PASSWORD_ATTEMPTS = 3
-        # Loop until the password is correct or the maximum attempts are reached
         while not is_password_correct and failed_attempts < MAX_PASSWORD_ATTEMPTS:
-            # Prompt the user for the password
             entered_password = get_password_from_user()
-            # Hash the entered password
             hashed_entered_password = hash_the_password(entered_password, stored_password_salt)
-
-            # Check if the hashed entered password matches the stored password
             if hashed_entered_password == stored_password_hash:
                 is_password_correct = True
                 print("Password verified successfully.")
-            # If the password is incorrect, prompt the user to try again
             else:
                 failed_attempts += 1
-                print(f"Incorrect password. Attempts remaining: {MAX_PASSWORD_ATTEMPTS - failed_attempts}")
-        # If the password is incorrect after the maximum attempts, create a new password
+                error_msg = f"Incorrect password. Attempts remaining: {MAX_PASSWORD_ATTEMPTS - failed_attempts}"
+                print(error_msg)
+                write_to_error_log(f"Password verification failed attempt {failed_attempts}.")
         if not is_password_correct:
             print("Too many failed attempts. Creating a new password.")
+            write_to_error_log("Exceeded maximum password attempts; initiating new password creation.")
             create_new_password()
-    # Handle exceptions
     except Exception as ex:
         write_to_error_log(f"Error in password verification: {str(ex)}")
         print("An error occurred during password verification. Creating a new password.")
@@ -248,43 +248,34 @@ If an error occurs during the process, an error message is written to the error
 log and the user is prompted to try again.
 """
 def create_new_password():
-    # Loop until a valid password is entered
     is_password_set = False
-
     while not is_password_set:
-        # Prompt the user to create a new password
         new_password = get_password_from_user(
-            prompt="Create a new password (minimum 8 characters, must include at least one uppercase letter, "
-                   "one lowercase letter, one digit, and one special character):"
+            prompt="Create a new password (minimum 8 characters, must include at least one uppercase letter, one lowercase letter, one digit, and one special character): "
         )
-        # Check if the password meets the requirements
         if not is_password_valid(new_password):
             print("Password does not meet requirements. Please try again.")
+            write_to_error_log("New password creation error: password does not meet requirements.")
             continue
 
-        # Prompt the user to confirm the password
         confirm_password = get_password_from_user(prompt="Confirm your password: ")
-
-        # Check if the passwords match
         if new_password != confirm_password:
             print("Passwords do not match. Please try again.")
+            write_to_error_log("New password creation error: passwords do not match.")
             continue
-        # Hash the password
         try:
             password_salt = os.urandom(16)
             hashed_password = hash_the_password(new_password, password_salt)
-            # Write the hashed password and salt to the password file
             salt_as_string = base64.b64encode(password_salt).decode()
             with open(HIDDEN_PASSWORD_FILE, 'w') as f:
                 f.write(f"{hashed_password}:{salt_as_string}")
-            # Set the file permissions to be readable and writable only by the current user
             os.chmod(HIDDEN_PASSWORD_FILE, 0o600)
             is_password_set = True
             print("Password created and saved successfully.")
-        # Handle exceptions
         except Exception as ex:
             write_to_error_log(f"Error creating password: {str(ex)}")
             print("An error occurred while saving the password. Please try again.")
+
 
 """
 Prompts the user for a password without echoing the input.
