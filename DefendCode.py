@@ -1,3 +1,9 @@
+import os
+import re
+import base64
+import hashlib
+import time
+from getpass import getpass
 """
 Defend Your Code - Security Assignment
 
@@ -12,15 +18,9 @@ Security Features:
 - Error logging with protected access
 - File permission controls
 
-@author Team 5
+@author Team 5 - Binal Dhaliwal, Anagha Krishna, Bhavneet Bhargava
 @version 1.0
 """
-import os
-import re
-import base64
-import hashlib
-import time
-from getpass import getpass
 
 # Constants
 MAX_NAME = 50  # Maximum name length

@@ -1,3 +1,15 @@
+import java.io.*;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 /**
  * Defend Your Code - Security Assignment
  * 
@@ -12,22 +24,9 @@
  * - Error logging with protected access
  * - File permission controls
  * 
- * @author Team 5
+ * @author Team 5 - Binal Dhaliwal, Anagha Krishna, Bhavneet Bhargava
  * @version 1.0
  */
-import java.io.*;
-import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.*;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.Scanner;
-import java.util.regex.Pattern;
-
-
 public class DefendCode {
     // Constants
     private static final int MAX_NAME = 50; // Maximum length for names
