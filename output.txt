@@ -1,0 +1,17 @@
+USER INFORMATION:
+First Name: A
+Last Name: K
+
+INTEGER VALUES:
+First Integer: 6
+Second Integer: 4
+
+CALCULATIONS:
+Sum: 10
+Product: 24
+
+INPUT FILE:
+File Name: input.txt
+
+INPUT FILE CONTENTS:
+Test file.

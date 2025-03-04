@@ -425,6 +425,8 @@ def write_to_error_log(error_message):
         if not os.path.exists(HIDDEN_ERROR_LOG_FILE):
             with open(HIDDEN_ERROR_LOG_FILE, 'w'):
                 pass
+            # Set the file permissions
+            os.chmod(HIDDEN_ERROR_LOG_FILE, 0o600) 
         # Write the error message to the file
         with open(HIDDEN_ERROR_LOG_FILE, 'a') as f:
             f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')}: {error_message}\n")
