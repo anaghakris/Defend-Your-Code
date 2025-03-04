@@ -19,3 +19,5 @@
 2025-03-03T17:59:46.631768: Incorrect password. Attempts remaining: 1
 2025-03-03T17:59:51.951825: Incorrect password. Attempts remaining: 0
 2025-03-03T17:59:51.952500: Too many failed password attempts. Creating a new password.
+2025-03-03T18:11:32.704687: Passwords do not match. Please try again.
+2025-03-03T18:11:43.729951: Password does not meet requirements. Please try again.

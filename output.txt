@@ -3,12 +3,12 @@ First Name: Anagha
 Last Name: Krishna
 
 INTEGER VALUES:
-First Integer: 4
-Second Integer: 5
+First Integer: 5
+Second Integer: 6
 
 CALCULATIONS:
-Sum: 9
-Product: 20
+Sum: 11
+Product: 30
 
 INPUT FILE:
 File Name: input.txt

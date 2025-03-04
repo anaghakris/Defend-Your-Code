@@ -307,6 +307,7 @@ public class DefendCode {
             String newPassword = getPasswordFromUser();
             // Check if the password meets the requirements
             if (!isPasswordValid(newPassword)) {
+                writeToErrorLog("Password does not meet requirements. Please try again.");
                 System.out.println("Password does not meet requirements. Please try again.");
                 continue;
             }
@@ -315,6 +316,7 @@ public class DefendCode {
             String confirmPassword = getPasswordFromUser();
             // Check if the passwords match
             if (!newPassword.equals(confirmPassword)) {
+                writeToErrorLog("Passwords do not match. Please try again.");
                 System.out.println("Passwords do not match. Please try again.");
                 continue;
             }
