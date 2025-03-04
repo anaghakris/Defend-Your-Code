@@ -202,15 +202,25 @@ public class DefendCode {
                 writeToErrorLog(err);
                 continue;
             }
-            // *** Reserved File Names Check ***
+            // Reserved File Names Check
             if (fileName.equals(HIDDEN_PASSWORD_FILE) || fileName.equals(HIDDEN_ERROR_LOG_FILE)) {
                 String err = "Error: Cannot use reserved file names: " + fileName;
                 System.out.println(err);
                 writeToErrorLog(err);
                 continue;
             }
+            // Check for valid file extension
             if (!fileName.endsWith(TEXT_FILE_EXTENSION)) {
                 String err = "File must have " + TEXT_FILE_EXTENSION + " extension: " + fileName;
+                System.out.println("Error: " + err);
+                writeToErrorLog(err);
+                continue;
+            }
+            // Ensure the file name contains exactly one occurrence of the extension.
+            // Extract the part before the final ".txt" and check if it contains the extension.
+            String baseName = fileName.substring(0, fileName.length() - TEXT_FILE_EXTENSION.length());
+            if (baseName.contains(TEXT_FILE_EXTENSION)) {
+                String err = "Error: File name must only contain one " + TEXT_FILE_EXTENSION + " extension. Please try again.";
                 System.out.println("Error: " + err);
                 writeToErrorLog(err);
                 continue;
@@ -224,6 +234,7 @@ public class DefendCode {
             return fileName;
         }
     }
+    
     
     /**
      * Handles password verification and creation. If the password file does not

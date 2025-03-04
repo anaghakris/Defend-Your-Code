@@ -1,2 +1,2 @@
-2025-03-03 19:41:17: Output file input error: reserved file name '.password.dat' used.
-2025-03-03T19:42:56.830634: Error: Cannot use reserved file names: .password.dat
+2025-03-03T19:55:48.617234: Error: File name must only contain one .txt extension. Please try again.
+2025-03-03 19:56:10: Output file input error: multiple .txt occurrences in 'output.txt.txt'.
