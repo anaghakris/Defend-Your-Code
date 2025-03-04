@@ -1,14 +1,14 @@
 USER INFORMATION:
-First Name: ad
-Last Name: sd
+First Name: ANagh
+Last Name: Kris
 
 INTEGER VALUES:
-First Integer: 123
-Second Integer: 2132
+First Integer: 567
+Second Integer: 4
 
 CALCULATIONS:
-Sum: 2255
-Product: 262236
+Sum: 571
+Product: 2268
 
 INPUT FILE:
 File Name: input.txt

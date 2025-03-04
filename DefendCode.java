@@ -114,30 +114,32 @@ public class DefendCode {
      * @return the validated name
      */
     private static String promptForValidName(String theNameType) {
-        // Prompt the user for a valid name
         while (true) {
             System.out.println("\nPlease enter your " + theNameType + " name (max " + MAX_NAME + 
-                             " characters, only letters, spaces, hyphens, and apostrophes allowed):");
+                                 " characters, only letters, spaces, hyphens, and apostrophes allowed):");
             String userInput = keyboardInput.nextLine().trim();
-            // Validate the name
             if (userInput.isEmpty()) {
-                System.out.println("Error: Name cannot be empty. Please try again.");
+                String err = "Name cannot be empty for " + theNameType + " name.";
+                System.out.println("Error: " + err);
+                writeToErrorLog(err);
                 continue;
             }
-            // Check name length
             if (userInput.length() > MAX_NAME) {
-                System.out.println("Error: Name exceeds maximum length of " + MAX_NAME + " characters. Please try again.");
+                String err = "Name exceeds maximum length of " + MAX_NAME + " characters for " + theNameType + " name.";
+                System.out.println("Error: " + err);
+                writeToErrorLog(err);
                 continue;
             }
-            // Check for invalid characters
             if (!VALID_NAME.matcher(userInput).matches()) {
-                System.out.println("Error: Name contains invalid characters. Only letters, spaces, hyphens, and apostrophes are allowed.");
+                String err = "Name contains invalid characters for " + theNameType + " name: " + userInput;
+                System.out.println("Error: " + err);
+                writeToErrorLog(err);
                 continue;
             }
-            // Return the validated name
             return userInput;
         }
     }
+    
     
     
     /**
@@ -149,23 +151,25 @@ public class DefendCode {
      * @return the validated integer
      */
     private static long promptForValidInteger(String thePosition) {
-        // Prompt the user for a valid integer
         while (true) {
             System.out.println("\nPlease enter the " + thePosition + " integer value (range: -2,147,483,648 to 2,147,483,647):");
             String userInput = keyboardInput.nextLine().trim();
-            // Validate the integer
             if (userInput.isEmpty()) {
-                System.out.println("Error: Input cannot be empty. Please try again.");
+                String err = "Integer value cannot be empty for " + thePosition + " integer.";
+                System.out.println("Error: " + err);
+                writeToErrorLog(err);
                 continue;
             }
-            // Check integer range
             try {
                 return Integer.parseInt(userInput);
             } catch (NumberFormatException ex) {
-                System.out.println("Error: Invalid integer format. Please enter a valid number within the specified range.");
+                String err = "Invalid integer format for " + thePosition + " integer: " + userInput;
+                System.out.println("Error: " + err);
+                writeToErrorLog(err);
             }
         }
     }
+    
     
     
     /**
@@ -178,36 +182,40 @@ public class DefendCode {
      * @return the validated file name
      */
     private static String promptForValidFileName(String theFileType) {
-        // Prompt the user for a valid file name
         while (true) {
             System.out.println("\nPlease enter the " + theFileType + " file name (must end with " + TEXT_FILE_EXTENSION + 
-                             " and be in the current directory):");
+                                 " and be in the current directory):");
             String fileName = keyboardInput.nextLine().trim();
-            // Validate the file name
             if (fileName.isEmpty()) {
-                System.out.println("Error: File name cannot be empty. Please try again.");
+                String err = "File name cannot be empty for " + theFileType + " file.";
+                System.out.println("Error: " + err);
+                writeToErrorLog(err);
                 continue;
             }
-            // Check file extension
             File fileObject = new File(fileName);
+            // If the user input contains any path separators, it might be an attempt at path traversal.
             if (!fileObject.getName().equals(fileName)) {
+                String err = "Path traversal attempt detected for " + theFileType + " file: " + fileName;
                 System.out.println("Error: Path traversal is not allowed. Please provide only a file name.");
+                writeToErrorLog(err);
                 continue;
             }
-            // Check file extension
             if (!fileName.endsWith(TEXT_FILE_EXTENSION)) {
-                System.out.println("Error: File must have " + TEXT_FILE_EXTENSION + " extension. Please try again.");
+                String err = "File must have " + TEXT_FILE_EXTENSION + " extension: " + fileName;
+                System.out.println("Error: " + err);
+                writeToErrorLog(err);
                 continue;
             }
-            // Check file existence
             if (theFileType.equals("input") && !Files.exists(Paths.get(fileName))) {
-                System.out.println("Error: Input file does not exist. Please try again.");
+                String err = "Input file does not exist: " + fileName;
+                System.out.println("Error: " + err);
+                writeToErrorLog(err);
                 continue;
             }
-            // Return the validated file name
             return fileName;
         }
     }
+    
     
     
     /**

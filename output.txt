@@ -1,14 +1,14 @@
 USER INFORMATION:
-First Name: A
-Last Name: K
+First Name: Anagha
+Last Name: Krishna
 
 INTEGER VALUES:
-First Integer: 6
-Second Integer: 4
+First Integer: 4
+Second Integer: 5
 
 CALCULATIONS:
-Sum: 10
-Product: 24
+Sum: 9
+Product: 20
 
 INPUT FILE:
 File Name: input.txt

@@ -1,0 +1,5 @@
+2025-03-03T17:16:25.503300: Input file does not exist: i.txt
+2025-03-03T17:17:52.851166: File name cannot be empty for input file.
+2025-03-03T17:19:27.066887: Invalid integer format for second integer: t
+2025-03-03T17:19:37.663907: File name cannot be empty for input file.
+2025-03-03T17:20:04.443709: Name cannot be empty for first name.
