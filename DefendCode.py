@@ -57,6 +57,7 @@ def main():
 
         # Ensure input and output files are different
         while the_input_file_name == the_output_file_name:
+            write_to_error_log("Error: Input and output files must be different.")
             print("Error: Input and output files must be different.")
             the_output_file_name = prompt_for_valid_file_name("output")
 

@@ -73,6 +73,7 @@ public class DefendCode {
             
             // Ensure input and output files are different
             while (theInputFileName.equals(theOutputFileName)) {
+                writeToErrorLog("Error: Input and output files must be different.");
                 System.out.println("Error: Input and output files must be different.");
                 theOutputFileName = promptForValidFileName("output");
             }
