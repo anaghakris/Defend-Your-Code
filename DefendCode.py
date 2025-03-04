@@ -131,9 +131,11 @@ Returns:
     int: The validated integer entered by the user.
 """
 def prompt_for_valid_integer(position):
+    min_int_value = -2147483648
+    max_int_value = 2147483647
     while True:
         user_input = input(
-            f"\nPlease enter the {position} integer value (range: -2,147,483,648 to 2,147,483,647): "
+            f"\nPlease enter the {position} integer value (range: {min_int_value} to {max_int_value}): "
         ).strip()
         if not user_input:
             error_msg = "Error: Input cannot be empty. Please try again."
@@ -141,11 +143,19 @@ def prompt_for_valid_integer(position):
             write_to_error_log(f"{position.capitalize()} integer input error: empty input.")
             continue
         try:
-            return int(user_input)
+            value = int(user_input)
+            # Check if the integer is within bounds
+            if value < min_int_value or value > max_int_value:
+                error_msg = f"Error: Integer value out of bounds. Please enter a value between {min_int_value} and {max_int_value}."
+                print(error_msg)
+                write_to_error_log(f"{position.capitalize()} integer input error: out-of-bounds value '{value}'.")
+                continue
+            return value
         except ValueError:
             error_msg = "Error: Invalid integer format. Please enter a valid number within the specified range."
             print(error_msg)
             write_to_error_log(f"{position.capitalize()} integer input error: invalid format for input '{user_input}'.")
+
 
 """
 Prompts the user for a valid file name (must end with TEXT_FILE_EXTENSION and
