@@ -83,6 +83,7 @@ public class DefendCode {
                    theOutputFileName.equals(HIDDEN_PASSWORD_FILE) ||
                    theInputFileName.equals(HIDDEN_ERROR_LOG_FILE) || 
                    theOutputFileName.equals(HIDDEN_ERROR_LOG_FILE)) {
+                writeToErrorLog("Error: Cannot use reserved file names.");
                 System.out.println("Error: Cannot use reserved file names.");
                 if (theInputFileName.equals(HIDDEN_PASSWORD_FILE) || 
                     theInputFileName.equals(HIDDEN_ERROR_LOG_FILE)) {

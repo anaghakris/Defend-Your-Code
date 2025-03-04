@@ -64,6 +64,7 @@ def main():
         # Ensure file names are not reserved
         while the_input_file_name in [HIDDEN_PASSWORD_FILE, HIDDEN_ERROR_LOG_FILE] or \
                 the_output_file_name in [HIDDEN_PASSWORD_FILE, HIDDEN_ERROR_LOG_FILE]:
+            write_to_error_log("Error: Cannot use reserved file names.")
             print("Error: Cannot use reserved file names.")
             # Prompt the user for file names
             if the_input_file_name in [HIDDEN_PASSWORD_FILE, HIDDEN_ERROR_LOG_FILE]:
