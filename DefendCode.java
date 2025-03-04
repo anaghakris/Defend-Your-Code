@@ -262,10 +262,13 @@ public class DefendCode {
                 } else {
                     failedAttempts++;
                     System.out.println("Incorrect password. Attempts remaining: " + (MAX_PASSWORD_ATTEMPTS - failedAttempts));
+                    writeToErrorLog("Incorrect password. Attempts remaining: " + (MAX_PASSWORD_ATTEMPTS - failedAttempts));
                 }
             }
             // If the maximum attempts are reached, create a new password
             if (!isPasswordCorrect) {
+                String errorMessage = "Too many failed password attempts. Creating a new password.";
+                writeToErrorLog(errorMessage);
                 System.out.println("Too many failed attempts. Creating a new password.");
                 createNewPassword();
             }
