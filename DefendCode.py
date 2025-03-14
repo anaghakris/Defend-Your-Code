@@ -205,12 +205,21 @@ def prompt_for_valid_file_name(file_type):
             write_to_error_log(f"{file_type.capitalize()} file input error: multiple {TEXT_FILE_EXTENSION} occurrences in '{file_name}'.")
             continue
 
+        # Ensure the base file name (excluding extension) contains only letters
+        base_name = file_name[:-len(TEXT_FILE_EXTENSION)]
+        if not base_name.isalpha():
+            error_msg = "Error: File name must only contain letters (excluding the extension)."
+            print(error_msg)
+            write_to_error_log(f"{file_type.capitalize()} file input error: file name '{file_name}' contains non-letter characters.")
+            continue
+
         if file_type == "input" and not os.path.exists(file_name):
             error_msg = "Error: Input file does not exist. Please try again."
             print(error_msg)
             write_to_error_log(f"Input file error: file '{file_name}' does not exist.")
             continue
         return file_name
+
 
 
 """

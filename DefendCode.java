@@ -184,6 +184,9 @@ public class DefendCode {
      * @return the validated file name
      */
     private static String promptForValidFileName(String theFileType) {
+        // Define a regex pattern that permits only letters (A-Z, a-z)
+        Pattern allowedFileNamePattern = Pattern.compile("^[A-Za-z]+$");
+        
         while (true) {
             System.out.println("\nPlease enter the " + theFileType + " file name (must end with " + TEXT_FILE_EXTENSION + 
                                  " and be in the current directory):");
@@ -217,7 +220,6 @@ public class DefendCode {
                 continue;
             }
             // Ensure the file name contains exactly one occurrence of the extension.
-            // Extract the part before the final ".txt" and check if it contains the extension.
             String baseName = fileName.substring(0, fileName.length() - TEXT_FILE_EXTENSION.length());
             if (baseName.contains(TEXT_FILE_EXTENSION)) {
                 String err = "Error: File name must only contain one " + TEXT_FILE_EXTENSION + " extension. Please try again.";
@@ -225,6 +227,14 @@ public class DefendCode {
                 writeToErrorLog(err);
                 continue;
             }
+            // Restrict base file name to only letters
+            if (!allowedFileNamePattern.matcher(baseName).matches()) {
+                String err = "Error: File name must contain only letters (A-Z, a-z) before the extension.";
+                System.out.println("Error: " + err);
+                writeToErrorLog(err);
+                continue;
+            }
+            // For input files, check if the file exists
             if (theFileType.equals("input") && !Files.exists(Paths.get(fileName))) {
                 String err = "Input file does not exist: " + fileName;
                 System.out.println("Error: " + err);
@@ -234,6 +244,7 @@ public class DefendCode {
             return fileName;
         }
     }
+    
     
     
     /**

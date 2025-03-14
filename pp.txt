@@ -1,0 +1,17 @@
+USER INFORMATION:
+First Name: bhsfjhfyg
+Last Name: khjvhjkvh
+
+INTEGER VALUES:
+First Integer: 44
+Second Integer: 44
+
+CALCULATIONS:
+Sum: 88
+Product: 1936
+
+INPUT FILE:
+File Name: tt.txt
+
+INPUT FILE CONTENTS:
+Test file.

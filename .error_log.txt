@@ -8,3 +8,15 @@
 2025-03-03T20:08:17.015934: File must have .txt extension: output.txts
 2025-03-03 20:17:21: First integer input error: out-of-bounds value '-2147483649'.
 2025-03-03 20:17:49: Second integer input error: out-of-bounds value '2147483648'.
+2025-03-13T19:06:17.394146: Incorrect password. Attempts remaining: 2
+2025-03-13T19:06:18.910305: Incorrect password. Attempts remaining: 1
+2025-03-13T19:06:20.611298: Incorrect password. Attempts remaining: 0
+2025-03-13T19:06:20.613029: Too many failed password attempts. Creating a new password.
+2025-03-13T19:30:15.084215: Error: File name must contain only letters (A-Z, a-z) before the extension.
+2025-03-13T19:30:22.985221: Error: File name must contain only letters (A-Z, a-z) before the extension.
+2025-03-13 19:31:50: Unexpected error in main process: name 'prompt_for_valid_name' is not defined
+2025-03-13 19:32:05: Unexpected error in main process: name 'prompt_for_valid_name' is not defined
+2025-03-13 19:32:06: Unexpected error in main process: name 'prompt_for_valid_name' is not defined
+2025-03-13 19:32:11: Unexpected error in main process: name 'prompt_for_valid_name' is not defined
+2025-03-13 19:35:42: Output file input error: file name 'ou6.txt' contains non-letter characters.
+2025-03-13 19:36:46: Output file input error: file name 'o@.txt' contains non-letter characters.
